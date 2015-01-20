@@ -1,6 +1,6 @@
 {
-  "name": "array-pager",
-  "version": "0.0.0",
+  "name": "ember-cli-array-pager",
+  "version": "1.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
