@@ -1,6 +1,6 @@
-# Array-pager
+# ember-cli-array-pager
 
-This README outlines the details of collaborating on this Ember addon.
+Ember CLI array pager addon.
 
 ## Installation
 
