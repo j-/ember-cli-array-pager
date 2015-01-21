@@ -21,7 +21,7 @@ paged.incrementPage();
 console.log(paged.toArray()); // [1, 5, 9];
 ```
 
-## Options
+## Properties
 
 **`content`**: Ember.Array (optional, default = `[]`)
 
