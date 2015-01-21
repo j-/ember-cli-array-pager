@@ -1,4 +1,4 @@
-import ArraySlice from 'array-slice/array-slice';
+import ArraySlice from 'array-slice';
 
 var ArrayPager = ArraySlice.extend({
 	incrementPage: function (pages) {
