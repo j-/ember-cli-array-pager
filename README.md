@@ -2,9 +2,9 @@
 
 Ember CLI array pager addon.
 
-`ember-cli-array-pager` exposes an [Ember][ember] [ArrayProxy][proxy] subclass which proxies a slice
-of a given content array. Its values will update when the original array is modified. Useful for
-creating pagination components. Extends [`ember-cli-array-slice`][slice];
+`ember-cli-array-pager` exposes an [Ember][ember] [ArrayProxy][proxy] subclass
+which divides a content array into pages. Useful for creating pagination
+components. Extends [`j-/ember-cli-array-slice`][slice].
 
 ## Example
 
@@ -12,41 +12,35 @@ creating pagination components. Extends [`ember-cli-array-slice`][slice];
 import ArrayPager from 'array-pager';
 
 var paged = ArrayPager.create({
-	content: [3, 1, 4, 1, 5, 9],
+	content: [1, 2, 3, 4, 5, 6],
 	limit: 3
 });
 
-console.log(paged.toArray()); // [3, 1, 4];
-paged.incrementPage();
-console.log(paged.toArray()); // [1, 5, 9];
+console.log(paged.toArray()); // [1, 2, 3];
+paged.incrementProperty('page');
+console.log(paged.toArray()); // [4, 5, 6];
 ```
 
 ## Properties
 
 **`content`**: Ember.Array (optional, default = `[]`)
 
-The content array. Must be an object that implements `Ember.Array` and/or `Ember.MutableArray`.
+The content array. Must be an object that implements `Ember.Array` and/or
+`Ember.MutableArray`.
 See [`Ember.ArrayProxy#content`][content].
 
-**`offset`**: Number (optional, default = `0`)
+**`page`**: Number (optional, default = `1`)
 
-Index where pager begins.
+1-based index of current page. Gets and sets the underlying `offset` property.
+
+**`pages`**: Number (readonly)
+
+1-based count of total pages available based on content length and `limit`.
 
 **`limit`**: Number (optional, default = `Infinity`)
 
-Maximum number of elements to hold in the array. By default, holds all elements after `offset`.
-
-## Methods
-
-**`incrementPage([pages = 1])`**: `this`
-
-Increase the current offset by a number of pages. When not given any arguments this will advance by
-a single page.
-
-**`decrementPage([pages = 1])`**: `this`
-
-Decrease the current offset by a number of pages. When not given any arguments this will regress by
-a single page.
+Maximum number of elements to hold in a single page. By default, holds all
+elements after `offset`.
 
 ## Installing
 
