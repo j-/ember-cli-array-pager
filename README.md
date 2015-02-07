@@ -1,5 +1,7 @@
 # ember-cli-array-pager
 
+[![master branch build status](https://travis-ci.org/j-/ember-cli-array-pager.svg?branch=master)](https://travis-ci.org/j-/ember-cli-array-pager)
+
 Ember CLI array pager addon.
 
 `ember-cli-array-pager` exposes an [Ember][ember] [ArrayProxy][proxy] subclass
