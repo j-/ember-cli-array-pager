@@ -61,12 +61,12 @@ var ArrayPager = ArraySlice.extend({
 });
 
 ArrayPager.computed = {
-	page: function (prop, page, limit) {
+	page: function (prop, limit, page) {
 		return computed({
 			get: function () {
 				return ArrayPager.create({
 					content: get(this, prop),
-					page: page,
+					page: (page || 0),
 					limit: limit
 				});
 			}
