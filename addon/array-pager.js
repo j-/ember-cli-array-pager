@@ -37,6 +37,9 @@ var ArrayPager = ArraySlice.extend({
 				pages = 0;
 			}
 			return pages;
+		},
+		set: function () {
+			throw new Error('Cannot set `pages` property of array pager');
 		}
 	}),
 
