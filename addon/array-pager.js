@@ -1,11 +1,12 @@
 import Em from 'ember';
 import ArraySlice from 'array-slice';
+var computed = Em.computed;
 var get = Em.get;
 var set = Em.set;
 
 var ArrayPager = ArraySlice.extend({
 	// 1-based
-	page: function (key, page) {
+	page: computed('offset', 'limit', function (key, page) {
 		var limit = get(this, 'limit');
 		var offset;
 		// default value
@@ -19,10 +20,10 @@ var ArrayPager = ArraySlice.extend({
 		offset = (limit * page) || 0;
 		set(this, 'offset', offset);
 		return page + 1;
-	}.property('offset', 'limit'),
+	}),
 
 	// 1-based
-	pages: function () {
+	pages: computed('content.length', 'limit', function () {
 		var limit = get(this, 'limit');
 		var length = get(this, 'content.length');
 		var pages = Math.ceil(length / limit) || 1;
@@ -30,12 +31,12 @@ var ArrayPager = ArraySlice.extend({
 			pages = 0;
 		}
 		return pages;
-	}.property('content.length', 'limit')
+	})
 });
 
 ArrayPager.computed = {
 	page: function (prop, page, limit) {
-		return Em.computed(prop, function () {
+		return computed(function () {
 			return ArrayPager.create({
 				content: get(this, prop),
 				page: page,
