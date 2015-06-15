@@ -55,7 +55,7 @@ $ npm install --save ember-cli-array-pager
 Or with [Ember CLI][cli]:
 
 ```sh
-$ ember install:npm ember-cli-array-pager
+$ ember install ember-cli-array-pager
 ```
 
 ## License
