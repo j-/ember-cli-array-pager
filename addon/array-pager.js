@@ -1,6 +1,7 @@
 import Em from 'ember';
 import ArraySlice from 'array-slice';
 var computed = Em.computed;
+var equal = computed.equal;
 var get = Em.get;
 var set = Em.set;
 var max = Math.max;
@@ -35,6 +36,17 @@ var ArrayPager = ArraySlice.extend({
 				pages = 0;
 			}
 			return pages;
+		}
+	}),
+
+	isFirstPage: equal('page', 0),
+
+	isLastPage: computed('page', 'pages', {
+		get: function () {
+			var page = this.get('page');
+			var pages = this.get('pages');
+			var isLast = page >= pages;
+			return isLast;
 		}
 	})
 });
