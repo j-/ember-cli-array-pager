@@ -1,6 +1,6 @@
 # ember-cli-array-pager
 
-[![master branch build status](https://travis-ci.org/j-/ember-cli-array-pager.svg?branch=master)](https://travis-ci.org/j-/ember-cli-array-pager)
+[![master branch build status][build-icon]][build-link]
 
 Ember CLI array pager addon.
 
@@ -62,6 +62,8 @@ $ ember install:npm ember-cli-array-pager
 
 [MIT license](LICENSE.md).
 
+[build-icon]: https://travis-ci.org/j-/ember-cli-array-pager.svg?branch=master
+[build-link]: https://travis-ci.org/j-/ember-cli-array-pager
 [ember]: http://emberjs.com/
 [proxy]: http://emberjs.com/api/classes/Ember.ArrayProxy.html
 [slice]: https://github.com/j-/ember-cli-array-slice
