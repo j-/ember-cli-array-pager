@@ -48,7 +48,16 @@ var ArrayPager = ArraySlice.extend({
 			var isLast = page >= pages;
 			return isLast;
 		}
-	})
+	}),
+
+	goToFirstPage: function () {
+		this.set('page', 0);
+	},
+
+	goToLastPage: function () {
+		var max = this.get('pages');
+		this.set('page', max);
+	}
 });
 
 ArrayPager.computed = {
