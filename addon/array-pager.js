@@ -3,8 +3,6 @@ import ArraySlice from 'array-slice';
 
 var computed = Em.computed;
 var lte = computed.lte;
-var get = Em.get;
-var set = Em.set;
 var max = Math.max;
 var ceil = Math.ceil;
 
@@ -12,17 +10,17 @@ var ArrayPager = ArraySlice.extend({
 	// 1-based
 	page: computed('offset', 'limit', {
 		get: function () {
-			var limit = get(this, 'limit');
-			var offset = get(this, 'offset') || 0;
+			var limit = this.get('limit');
+			var offset = this.get('offset') || 0;
 			return ceil(offset / limit) || 1;
 		},
 		set: function (key, page) {
-			var limit = get(this, 'limit');
-			var offset = get(this, 'offset');
+			var limit = this.get('limit');
+			var offset = this.get('offset');
 			// no negative pages
 			page = max(page - 1, 0);
 			offset = (limit * page) || 0;
-			set(this, 'offset', offset);
+			this.set('offset', offset);
 			return page + 1;
 		}
 	}),
@@ -30,8 +28,8 @@ var ArrayPager = ArraySlice.extend({
 	// 1-based
 	pages: computed('content.length', 'limit', {
 		get: function () {
-			var limit = get(this, 'limit');
-			var length = get(this, 'content.length');
+			var limit = this.get('limit');
+			var length = this.get('content.length');
 			var pages = ceil(length / limit) || 1;
 			if (pages === Infinity) {
 				pages = 0;
@@ -69,7 +67,7 @@ ArrayPager.computed = {
 		return computed({
 			get: function () {
 				return ArrayPager.create({
-					content: get(this, prop),
+					content: this.get(prop),
 					page: (page || 0),
 					limit: limit
 				});
