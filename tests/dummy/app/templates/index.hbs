@@ -46,3 +46,10 @@
 	<button {{action 'items' 1}}>+1</button>
 	<button {{action 'items' 2}}>+2</button>
 </div>
+
+<h3>Navigate</h3>
+
+<div class="buttons">
+	<button {{action 'goTo' 'first'}} disabled="{{if output.isFirstPage 'disabled'}}">First page</button>
+	<button {{action 'goTo' 'last'}} disabled="{{if output.isLastPage 'disabled'}}">Last page</button>
+</div>

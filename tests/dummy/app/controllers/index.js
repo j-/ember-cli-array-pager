@@ -47,6 +47,14 @@ var IndexController = Em.Controller.extend({
 			else {
 				this.removeItems(-inc);
 			}
+		},
+		goTo: function (dir) {
+			if (dir === 'first') {
+				this.get('output').goToFirstPage();
+			}
+			else if (dir === 'last') {
+				this.get('output').goToLastPage();
+			}
 		}
 	}
 });
