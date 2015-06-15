@@ -5,14 +5,7 @@ var computed = Em.computed;
 var IndexController = Em.Controller.extend({
 	input: Em.A(),
 
-	output: computed({
-		get: function () {
-			return ArrayPager.create({
-				content: this.get('input'),
-				limit: 5
-			});
-		}
-	}),
+	output: ArrayPager.computed.page('input', 5),
 
 	addItems: function (n) {
 		for (var i = 0; i < n; i++) {
