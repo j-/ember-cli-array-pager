@@ -8,15 +8,15 @@ var ceil = Math.ceil;
 
 var ArrayPager = ArraySlice.extend({
 	// 1-based
-	page: computed('offset', 'limit', {
-		get: function () {
-			var limit = this.get('limit');
-			var offset = this.get('offset') || 0;
+	page: computed('offset', 'limit', function (key, page) {
+		var limit = this.get('limit');
+		var offset = this.get('offset') || 0;
+		// get
+		if (arguments.length <= 1) {
 			return ceil(offset / limit) || 1;
-		},
-		set: function (key, page) {
-			var limit = this.get('limit');
-			var offset = this.get('offset');
+		}
+		// set
+		else {
 			// no negative pages
 			page = max(page - 1, 0);
 			offset = (limit * page) || 0;
@@ -26,8 +26,8 @@ var ArrayPager = ArraySlice.extend({
 	}),
 
 	// 1-based
-	pages: computed('content.length', 'limit', {
-		get: function () {
+	pages: computed('content.length', 'limit', function () {
+		if (arguments.length <= 1) {
 			var limit = this.get('limit');
 			var length = this.get('content.length');
 			var pages = ceil(length / limit) || 1;
@@ -35,21 +35,19 @@ var ArrayPager = ArraySlice.extend({
 				pages = 0;
 			}
 			return pages;
-		},
-		set: function () {
+		}
+		else {
 			throw new Error('Cannot set `pages` property of array pager');
 		}
 	}),
 
 	isFirstPage: lte('page', 1),
 
-	isLastPage: computed('page', 'pages', {
-		get: function () {
-			var page = this.get('page');
-			var pages = this.get('pages');
-			var isLast = page >= pages;
-			return isLast;
-		}
+	isLastPage: computed('page', 'pages', function () {
+		var page = this.get('page');
+		var pages = this.get('pages');
+		var isLast = page >= pages;
+		return isLast;
 	}),
 
 	goToFirstPage: function () {
@@ -64,14 +62,12 @@ var ArrayPager = ArraySlice.extend({
 
 ArrayPager.computed = {
 	page: function (prop, limit, page) {
-		return computed({
-			get: function () {
-				return ArrayPager.create({
-					content: this.get(prop),
-					page: (page || 0),
-					limit: limit
-				});
-			}
+		return computed(function () {
+			return ArrayPager.create({
+				content: this.get(prop),
+				page: (page || 0),
+				limit: limit
+			});
 		});
 	}
 };

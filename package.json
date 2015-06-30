@@ -50,6 +50,6 @@
     "configPath": "tests/dummy/config"
   },
   "dependencies": {
-    "ember-cli-array-slice": "1.2.0"
+    "ember-cli-array-slice": "^1.2.2"
   }
 }
